@@ -3,6 +3,7 @@
     opacity: 0;
     height: 0;
     display: none;
+    background-color: #fff;
     border: 1px solid #1f687281;
     border-radius: 2px;
     padding: 0;
@@ -21,6 +22,7 @@
 .context-menu-item {
     width: 150px;
     list-style: none;
+    background-color: #fff;
     margin: 0;
     font-size: 16px;
     padding: 8px;
@@ -31,4 +33,16 @@
 }
 .context-menu-item:hover {
     background-color: #16d6f081
+}
+
+
+.block {
+    width: 100px;
+    height: 100px;
+    background-color: #c094f1;
+    position: fixed;    
+    top: calc(50vh - 50px);
+    /* bottom: 0; */
+    left: calc(50vw - 50px);
+    transition: all .1s;
 }
