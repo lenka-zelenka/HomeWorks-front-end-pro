@@ -14,11 +14,12 @@ window.onload = function(){
     data = [1, 2, 3, 'slkvjlskfjsf', {x : 3}];
 
     myMethods = {
-         getValuesByType: function(type) {
-            if (typeof item ==  type) { 
-                return item
+        getValuesByType: function(type) {
+            if (typeof this.item ==  type) { 
+                return this.item;
             }       
         },
+
     };
   
     var res = myMethods.getValuesByType.call(data, 'string');
