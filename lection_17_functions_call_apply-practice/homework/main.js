@@ -19,19 +19,35 @@ var characters = [{
     }
 ];
 function pluck(arr, value) {
-    var res = arr.map(function (item) {
+    return arr.map(function (item) {
         return item[value];
     });
-    return res;
 }
 console.log(pluck(characters, 'name')); // ['barney', 'fred']
-// 2
-// напиши функцию filter, которая принимает функцию-предикат и массив. Возвращает она массив значений, для которых предикат вернет true.
 
-// var input = [1, 2, 3, 4, 5, 6];
-// function isEven(x) { return x % 2 == 0; } // проверяет на четность
-// console.log(filter(input, isEven)); // [2, 4, 6]
+// 2
+// напиши функцию filter, которая принимает функцию-предикат и массив. 
+// Возвращает она массив значений, для которых предикат вернет true.
+
+var input = [1, 2, 3, 4, 5, 6];
+function isEven(x) { return x % 2 == 0; } // проверяет на четность
+console.log(filter(input, isEven)); // [2, 4, 6]
 // Функция не должна изменять исходный массив
+
+function filter(arr, callback){
+    // return arr.filter(function(item){
+        
+    //     return item % 2 == 0;
+    // });
+    return arr.filter(callback)
+}
+
+// Array.prototype.foEach = function(callback){
+//     for(var i = 0; i < this.length; i++){
+//         callback(this[i], i, this);
+//     }
+// }
+
 
 // 3
 // Напиши функцию count(), считающую число свойств в объекте. Функция должна хранится в прототипе всех обьеков
