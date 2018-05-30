@@ -38,5 +38,15 @@ function filter(arr, callback){
     return arr.filter(callback)
 }
 
+// Array.prototype.foEach = function(callback){
+//     for(var i = 0; i < this.length; i++){
+//         callback(this[i], i, this);
+//     }
+// }
+
+
 // 3
 // Напиши функцию count(), считающую число свойств в объекте. Функция должна хранится в прототипе всех обьеков
+Object.prototype.count = function(){
+    return this.length
+}
