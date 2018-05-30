@@ -1,56 +1,37 @@
-window.onload = function() {
-    var contextmenu = document.querySelector('#context-menu');
-    var mousepositionX,
-        mousepositionX;
+// 1
+// напиши функцию pluck, которая берет массив объектов и возвращает массив значений определенного поля:
 
-    document.addEventListener('contextmenu', function(event){
-        event.preventDefault();
-             
-        contextmenu.style.left = event.pageX + 'px';
-        contextmenu.style.top = event.pageY + 'px';
-        contextmenu.classList.add('show');
-    })
-    document.addEventListener('mousedown', function(event){     
-        contextmenu.classList.remove('show');
-    }) 
+// var characters = [
+//     { 'name': 'barney', 'age': 36 },
+//     { 'name': 'fred', 'age': 40 }
+// ];
+
+// console.log(pluck(characters, 'name')); // ['barney', 'fred']
 
 
-    // DATA
-    var cm = {
-        actions: [
-            {
-                title: 'Copy',
-                handler:  'Copy',
-            },
-            {
-                title: 'Paste',
-                handler:  'Paste',
-            },
-            {
-                title: 'Delete',
-                handler:  'Delete',
-            },
-            
-        ]
+var characters = [{
+        'name': 'barney',
+        'age': 36
+    },
+    {
+        'name': 'fred',
+        'age': 40
     }
+];
+function pluck(arr, value) {
+    var res = arr.map(function (item) {
+        return item[value];
+    });
+    return res;
+}
+console.log(pluck(characters, 'name')); // ['barney', 'fred']
+// 2
+// напиши функцию filter, которая принимает функцию-предикат и массив. Возвращает она массив значений, для которых предикат вернет true.
 
+// var input = [1, 2, 3, 4, 5, 6];
+// function isEven(x) { return x % 2 == 0; } // проверяет на четность
+// console.log(filter(input, isEven)); // [2, 4, 6]
+// Функция не должна изменять исходный массив
 
-    for(i=0; i < cm.actions.length; i++) {
-        var li = document.createElement('li');
-        li.classList.add('context-menu-item');
-        li.innerHTML = cm.actions[i].title;
-        
-        li.addEventListener('mousedown', window[cm.actions[i].handler]);
-        contextmenu.appendChild(li);
-    }
-}
-function Copy(){
-    console.log('Copy')
-}
-function Paste(){
-    console.log('Paste')
-}
-function Delete(){
-    console.log('Delete')
-}
-
+// 3
+// Напиши функцию count(), считающую число свойств в объекте. Функция должна хранится в прототипе всех обьеков
