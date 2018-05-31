@@ -1,5 +1,7 @@
 console.log('Lection_20');
 
+
+
 function doAjax(method, path){
     var xhr = new XMLHttpRequest();
     
@@ -18,15 +20,34 @@ function doAjax(method, path){
     })
 }
 
-var data1 = doAjax('GET', '/data.json');
-var data2 = doAjax('GET', '/data2.json');
+doAjax('GET', '/config.json')
+    .then(configSuccess);
 
-Promise.all([data1, data2])
+function configSuccess(response) {
+    doAjax('GET', '/' + response.role +'.json')
+        .then(initMenu)
+}
+Promise
+    .all([
+        doAjax('GET', '/data.json'),
+        doAjax('GET', '/data2.json'),
+    ])
     .then(function(response){
-        console.log(response); 
+        console.log(response[2]); 
+        
     })
     .catch(function(){
-        console.log('Error')
+        console.log('Error');
     });
+
+function initMenu(menuItems){
+    var menu = document.getElementById('menu');
+
+    for (i = 0; i < menuItems.menu.length; i++) {
+        var li = document.createElement('li');
+        li.innerHTML = menuItems.menu[i].title;
+        menu.appendChild(li);
+    }
+}
 
 
