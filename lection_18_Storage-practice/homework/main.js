@@ -31,7 +31,7 @@ function addToCart (event){
     // selectedGood ={};
     selectedGood = goods.goods[itemId];
     selectedGood.quantity = 1;
-    console.log(this.parentNode.parentNode.id, selectedGood); 
+    // console.log(this.parentNode.parentNode.id, selectedGood); 
     setLocalGoods(selectedGood);
     InitGoodsCart(selectedGood)
 }
@@ -39,24 +39,20 @@ function setLocalGoods(items) {
     localStorage.setItem('goods', JSON.stringify(items));
 }
 function getLocalGoods(){
-    return localStorage.getItem('goods')
+    return JSON.parse(localStorage.goods);
 }
-function InitGoodsCart(cartItems){
-    tempitems = cartItems;
-    console.log(cartItems.goods.length)
+function InitGoodsCart(){
+    tempitems = getLocalGoods();
+    console.log(tempitems)
     var basket = document.querySelector('#basket .collection');
-    for (var i = 0; i < cartItems.goods.length; i++ ){
-        if(cartItems.goods[i].quantity){
-            console.log(cartItems.goods[i].title)
-            
-            var li = document.createElement('li')
-            li.classList.add('collection-item');
-            li.innerHTML =  '<span class="item-title">'+ cartItems.goods[i].title +
-                ' </span>' + '<span class="item-price">'+ cartItems.goods[i].price + 
-                ' </span>' + '<span class="new badge">' + cartItems.goods[i].quantity + '</span>';
-            basket.appendChild(li);
-            
-        }
-        // console.log(cartItems.goods[i].title)
-    }
+    // for (key in tempitems ){
+            // console.log(tempitems.key)
+        
+        var li = document.createElement('li')
+        li.classList.add('collection-item');
+        li.innerHTML =  '<span class="item-title">'+ tempitems.title +
+            ' </span>' + '<span class="item-price">'+ tempitems.price + 
+            ' </span>' + '<span class="new badge">' + tempitems.quantity + '</span>';
+        basket.appendChild(li);
+    // }
 }
