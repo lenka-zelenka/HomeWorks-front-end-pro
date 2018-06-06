@@ -1,0 +1,29 @@
+{
+    "goods": { 
+        "item-1": {
+            "id": "item-1",
+            "title": "Банан",
+            "price": 10
+        },
+        "item-2": {
+            "id": "item-2",
+            "title": "Клубника",
+            "price": 50
+        },
+        "item-3": {
+            "id": "item-3",
+            "title": "Персик",
+            "price": 80
+        },
+        "item-4": {
+            "id": "item-4",
+            "title": "Арбуз",
+            "price": 5
+        },
+        "item-5": {
+            "id": "item-5",
+            "title": "Ананас",
+            "price": 45
+        }
+    }
+}

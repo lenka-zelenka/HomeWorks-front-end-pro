@@ -1,4 +1,12 @@
 .card .card-image {
-    height: 100px;
+    max-height: 200px;
+    overflow: hidden;
 
+}
+.basket {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    z-index: 10;
 }
