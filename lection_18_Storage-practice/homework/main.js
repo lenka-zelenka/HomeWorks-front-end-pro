@@ -1,3 +1,7 @@
+var model = {
+    goods: null
+}
+
 function doAjax(method, path){
     var xhr = new XMLHttpRequest();
     
@@ -17,7 +21,7 @@ function doAjax(method, path){
 }
 doAjax('GET', './goods.json')
     .then(function(response){
-        goods = response;
+        model.goods = response.goods;
     })
 
 var addBtn = document.querySelectorAll('.add-to-cart')
@@ -29,30 +33,51 @@ addBtn.forEach(function(item){
 function addToCart (event){
     itemId = this.parentNode.parentNode.id;
     // selectedGood ={};
-    selectedGood = goods.goods[itemId];
-    selectedGood.quantity = 1;
+    selectedGood = model.goods[itemId];
+    // selectedGood.quantity = 1;
     // console.log(this.parentNode.parentNode.id, selectedGood); 
     setLocalGoods(selectedGood);
     InitGoodsCart(selectedGood)
 }
-function setLocalGoods(items) {
-    localStorage.setItem('goods', JSON.stringify(items));
+function setLocalGoods(item) {
+    var data = {};
+    if (localStorage.goods) {
+        data = getLocalGoods();
+    }
+
+    if (!data[item.id]) {
+        data[item.id] = item;
+        data[item.id].quantity = 1;
+    }
+    else {
+        data[item.id].quantity++;
+    }
+
+    localStorage.setItem('goods', JSON.stringify(data));
 }
 function getLocalGoods(){
     return JSON.parse(localStorage.goods);
 }
 function InitGoodsCart(){
     tempitems = getLocalGoods();
-    console.log(tempitems)
+    
     var basket = document.querySelector('#basket .collection');
-    // for (key in tempitems ){
+    if (basket) {
+        clearBasket(basket);
+    }
+    
+    for (key in tempitems){
             // console.log(tempitems.key)
         
         var li = document.createElement('li')
         li.classList.add('collection-item');
-        li.innerHTML =  '<span class="item-title">'+ tempitems.title +
-            ' </span>' + '<span class="item-price">'+ tempitems.price + 
-            ' </span>' + '<span class="new badge">' + tempitems.quantity + '</span>';
+        li.innerHTML =  '<span class="item-title">'+ tempitems[key].title +
+            ' </span>' + '<span class="item-price">'+ tempitems[key].price + 
+            ' </span>' + '<span class="new badge">' + tempitems[key].quantity + '</span>';
         basket.appendChild(li);
-    // }
+    }
+}
+
+function clearBasket(basket) {
+    basket.querySelectorAll('li').forEach(item => item.remove());
 }

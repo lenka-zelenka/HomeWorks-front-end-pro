@@ -4,7 +4,7 @@
   "description": "goods add to cast",
   "main": "main.js",
   "scripts": {
-    "server": "node server/index.js"
+    "start": "node server/index.js"
   },
   "author": "",
   "license": "ISC",
