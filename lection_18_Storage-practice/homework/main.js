@@ -1,6 +1,10 @@
 var model = {
     goods: null
 }
+var addBtn = document.querySelectorAll('.add-to-cart');
+var clearBtn = document.querySelector('#clear-basket');
+var basket = document.querySelector('#basket .collection');
+var removeItemBtns = [];
 
 function doAjax(method, path){
     var xhr = new XMLHttpRequest();
@@ -24,18 +28,23 @@ doAjax('GET', './goods.json')
         model.goods = response.goods;
     })
 
-var addBtn = document.querySelectorAll('.add-to-cart')
 
 addBtn.forEach(function(item){
     item.addEventListener('click', addToCart);
 });
-// localCart =  JSON.parse(localStorage.getItem("goods"));
+clearBtn.addEventListener('click', function(event){
+    clearBasket(basket);
+    //очищаем все хранилище
+    delete localStorage.goods;
+});
+removeItemBtns.forEach(function(item){
+    item.addEventListener('click', clearBasketItem)
+});
+
+
 function addToCart (event){
     itemId = this.parentNode.parentNode.id;
-    // selectedGood ={};
     selectedGood = model.goods[itemId];
-    // selectedGood.quantity = 1;
-    // console.log(this.parentNode.parentNode.id, selectedGood); 
     setLocalGoods(selectedGood);
     InitGoodsCart(selectedGood)
 }
@@ -61,23 +70,40 @@ function getLocalGoods(){
 function InitGoodsCart(){
     tempitems = getLocalGoods();
     
-    var basket = document.querySelector('#basket .collection');
     if (basket) {
         clearBasket(basket);
     }
-    
-    for (key in tempitems){
-            // console.log(tempitems.key)
-        
-        var li = document.createElement('li')
+    for (key in tempitems){        
+        var li = document.createElement('li');
+        removeItemBtn = document.createElement('a');
+        removeItemBtn.classList.add('remove-item')
+        removeItemBtn.innerHTML = '<i class="material-icons">close</i>';
+        removeItemBtn.addEventListener('click', function(event){
+            clearBasketItem(tempitems[key])
+        });
+        // removeItemBtn = '<a href="#" class="remove-item"><i class="material-icons">close</i></a>'
         li.classList.add('collection-item');
-        li.innerHTML =  '<span class="item-title">'+ tempitems[key].title +
-            ' </span>' + '<span class="item-price">'+ tempitems[key].price + 
-            ' </span>' + '<span class="new badge">' + tempitems[key].quantity + '</span>';
+        li.innerHTML =  
+            '<span class="item-title">'+ tempitems[key].title + ' </span>' + 
+            '<span class="item-price">'+ tempitems[key].price + ' </span>' + 
+            '<span class="new badge">' + tempitems[key].quantity + '</span>';
+        li.appendChild(removeItemBtn)
         basket.appendChild(li);
+        // removeItemBtns.push(removeItemBtn)
     }
 }
 
 function clearBasket(basket) {
     basket.querySelectorAll('li').forEach(item => item.remove());
+    
+}
+function clearBasketItem(item) {
+    console.log(item.id)
+    // item.remove();
+    // delete localStorage.goods[item];
+    // // InitGoodsCart();
+    var itemId = item.id;
+    var selectedGood = model.goods[itemId];
+    setLocalGoods(selectedGood);
+    InitGoodsCart(selectedGood)
 }
