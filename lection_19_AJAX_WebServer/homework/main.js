@@ -19,14 +19,14 @@ var userData = {
     name: '',
     age: ''
 } 
-sendBtn.addEventListener('click', function(event){
-    console.log(userData);
-    setData();
+sendBtn.addEventListener('submit', function(event){
+    userData.name = userForm.elements.name.value;
+    userData.age =  userForm.elements.age.value
     doAjax('POST', '/registration', userData)
 })
 
 
 function setData() {
-    userData.name = document.forms["user-data"].elements["user-name"].value;
-    userData.age =  document.forms["user-data"].elements["user-age"].value
+    // userData.name = userForm.elements.name.value;
+    // userData.age =  userForm.elements.age.value
 }
