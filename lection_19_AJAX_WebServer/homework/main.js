@@ -27,16 +27,25 @@ userName.addEventListener("input", checkName);
 // userAge.addEventListener("input", checkAge)
 
 function checkName(event){
-    masage = document.createElement('p')
+    var mesage = this.parentNode.querySelector('p.error');
+    mesage.classList.add('error');
+    mesage.classList.remove('display');
     if ( userName.value.search(/\d/) != -1 ) { 
-        this.classList.add('error')
-        masage.innerHTML = 'В имени не должно быть цифр!'
+        this.classList.add('error');
+        mesage.classList.add('display');
+        mesage.innerHTML = 'В имени не должно быть цифр!';
+        sendBtn.setAttribute('disabled', 'disabled')
     }
-    this.parentNode.appendChild(masage);
 } 
 
-// function checkAge (){
-
+// function checkAge (event){
+//     mesage = document.createElement('p')
+//     if ( userName.value.search([0-9]) != -1 ) { 
+//         this.classList.add('error')
+//         mesage.innerHTML = 'В возрасте должны быть только цифры!'
+//         this.parentNode.appendChild(mesage);
+//     } 
+//     parentElem.removeChild(elem);
 // }
 
 sendBtn.addEventListener('submit', function(event){

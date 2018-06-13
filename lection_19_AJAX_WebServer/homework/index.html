@@ -10,6 +10,13 @@
     .error {
         border-color: red
     }
+    p.error {
+        display: none;
+        color: red;
+    }
+    p.error.display{
+        display: block;
+    }
 </style>
 
 </head>
@@ -19,6 +26,7 @@
         <input type="text" name="name" id="user-name" placeholder="Your name">
         <input type="number" name="age" id="user-age" placeholder="Your age">
         <button type="submit" id="send-data">Send</button>
+        <p class="error"></p>
     </form>
 <script src="main.js"></script>
 </body>
