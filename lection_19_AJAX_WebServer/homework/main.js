@@ -14,19 +14,40 @@ function doAjax(method, path, data) {
 }
 
 var sendBtn = document.getElementById('send-data');
-var userForm = document.forms["user-data"]
+var userForm = document.forms["user-data"];
+var userName = userForm.elements.name;
+var userAge = userForm.elements.age
+
 var userData = {
     name: '',
     age: ''
 } 
+
+userName.addEventListener("input", checkName);
+// userAge.addEventListener("input", checkAge)
+
+function checkName(event){
+    masage = document.createElement('p')
+    if ( userName.value.search(/\d/) != -1 ) { 
+        this.classList.add('error')
+        masage.innerHTML = 'В имени не должно быть цифр!'
+    }
+    this.parentNode.appendChild(masage);
+} 
+
+// function checkAge (){
+
+// }
+
 sendBtn.addEventListener('submit', function(event){
-    userData.name = userForm.elements.name.value;
-    userData.age =  userForm.elements.age.value
-    doAjax('POST', '/registration', userData)
+    event.preventDefault();
+    setData();
 })
 
 
 function setData() {
-    // userData.name = userForm.elements.name.value;
-    // userData.age =  userForm.elements.age.value
+    userData.name = userName.value;
+    userData.age =  userAge.value;
+    userData = JSON.stringify(userData);
+    doAjax('POST', '/registration', userData)
 }
