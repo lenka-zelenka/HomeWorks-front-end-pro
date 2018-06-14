@@ -1,0 +1,61 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/united.bootstrap.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>GOODS</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+</head>
+<body>
+    <div id="basket" class="basket card">
+        <div class="card-content">
+        <span class="card-title">Корзина</span>
+            
+        </div>
+        <ul class="collection"></ul>
+        <div class="card-content">
+            <p>
+                <span>Всего: </span>
+                <strong id="total-summ"></strong>
+            </p> 
+        </div>
+        <div class="card-action">
+            <a id="clear-basket" class="waves-effect waves-light btn"> Remove all</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="goods-container" class="row">
+
+        </div>
+    </div>
+    
+    <!-- add script tags here -->
+
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    
+    <script>
+        System.config({
+            meta: {
+                format: 'cjs'
+            }
+        });
+        System.import('js/app.js');
+    </script>
+    
+    <!--<script data-main="js/app" src="node_modules/requirejs/require.js"></script>-->
+    
+    <!--<script src="js/player.js" type="text/javascript"></script>
+    <script src="js/game.js" type="text/javascript"></script>
+    <script src="js/scoreboard.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>-->
+    
+</body>
+</html>
