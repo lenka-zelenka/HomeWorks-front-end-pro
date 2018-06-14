@@ -27,31 +27,33 @@ userName.addEventListener("input", checkName);
 userAge.addEventListener("input", checkAge)
 
 function checkName(event){
-    var mesage = this.parentNode.querySelector('p.error');
     if ( userName.value.search(/\d/) != -1 ) { 
-        this.classList.add('error');
-        mesage.classList.add('display');
-        mesage.innerHTML = 'В имени не должно быть цифр!';
-        sendBtn.setAttribute('disabled', 'disabled')
+        addError(this, 'В имени не должно быть цифр!' )
     } else {
-        mesage.classList.remove('display');
-        this.classList.remove('error');
-        sendBtn. removeAttribute('disabled', 'disabled')
+        deleteError(this);
     }
 } 
 
 function checkAge (event){
-    var mesage = this.parentNode.querySelector('p.error');
     if ( +userAge.value < 0 ||  +userAge.value >= 120 ) { 
-        this.classList.add('error')
-        mesage.classList.add('display');
-        mesage.innerHTML = 'Указан неправильный возраст!'
-        sendBtn.setAttribute('disabled', 'disabled')
+        addError(this, 'Указан неправильный возраст!' )
     } else {
-        mesage.classList.remove('display');
-        this.classList.remove('error');
-        sendBtn. removeAttribute('disabled', 'disabled')
+        deleteError(this);
     }
+}
+
+function addError(element, errorText ){
+    var mesage = element.parentNode.querySelector('p.error');
+    element.classList.add('error');
+    mesage.classList.add('display');
+    mesage.innerHTML = errorText;
+    sendBtn.setAttribute('disabled', 'disabled')
+}
+function deleteError(element){
+    var mesage = element.parentNode.querySelector('p.error');
+    mesage.classList.remove('display');
+    element.classList.remove('error');
+    sendBtn. removeAttribute('disabled', 'disabled')
 }
 
 sendBtn.addEventListener('submit', function(event){
