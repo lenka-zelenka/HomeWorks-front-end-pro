@@ -28,13 +28,17 @@ userName.addEventListener("input", checkName);
 
 function checkName(event){
     var mesage = this.parentNode.querySelector('p.error');
-    mesage.classList.add('error');
-    mesage.classList.remove('display');
     if ( userName.value.search(/\d/) != -1 ) { 
         this.classList.add('error');
         mesage.classList.add('display');
         mesage.innerHTML = 'В имени не должно быть цифр!';
         sendBtn.setAttribute('disabled', 'disabled')
+    } else {
+        mesage.classList.remove('display');
+        this.classList.remove('error');
+        sendBtn. removeAttribute('disabled', 'disabled')
+
+
     }
 } 
 
