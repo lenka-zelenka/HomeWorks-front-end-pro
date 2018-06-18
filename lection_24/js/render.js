@@ -1,26 +1,29 @@
 
 // private members
+var model = {
+    goods: null
+}
 
-function renderGoods(goods){
-    console.log('GOODS IS HERE')
-    var goodsConteiner = document.getElementById('goods-container');    
-    
-    for (key in goods) {
+
+function renderGoods(data){
+    model.goods = data.goods;
+    var goodsConteiner = document.getElementById('goods-container')
+    for (key in model.goods) {
         var col = document.createElement('div');
         col.className = "col s12 m4 l3";
 
         var card = document.createElement('div');
         card.className = "card"
-        card.setAttribute('id', goods[key].id)
+        card.setAttribute('id', model.goods[key].id)
 
         var cardImage = document.createElement('div');
         cardImage.className = "card-image"
-        cardImage.innerHTML = ' <img src="' +  goods[key].imageSrc + ' ">'
+        cardImage.innerHTML = ' <img src="' + model.goods[key].imageSrc + ' ">'
 
         var cardContent = document.createElement('div');
         cardContent.className = "card-content";
-        cardContent.innerHTML = '<span class="card-title"> ' +  goods[key].title + '</span> '+ 
-        '<span class="tial"> ' +  goods[key].price + '</span> ';
+        cardContent.innerHTML = '<span class="card-title"> ' + model.goods[key].title + '</span> '+ 
+        '<span class="tial"> ' + model.goods[key].price + '</span> ';
 
         var cardAction = document.createElement('div');
         cardAction.className = 'card-action';
@@ -40,7 +43,12 @@ function renderGoods(goods){
         
     }
 }
-
+function addToCart (event){
+    itemId = this.parentNode.parentNode.id;
+    selectedGood = model.goods[itemId];
+    setLocalGoods(selectedGood);
+    InitGoodsCart(selectedGood)
+}
 
 module.exports = { 
     renderGoods: renderGoods

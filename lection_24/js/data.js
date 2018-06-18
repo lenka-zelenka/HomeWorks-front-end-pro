@@ -32,8 +32,47 @@ function load(){
 
 }
 
+function sortByName(){
+    var sorted = {
+        goods: null
+    }
+    var sortedNames = []
+    sorted.goods = model.goods
+    
+    for (key in sorted.goods) {
+        sortedNames.push(sorted.goods[key]);
+    }
+    sortedNames.sort(compareTitle)
+    
+    
+    
+        for(var i=0; i<sortedNames.length -1; i++) {
+            for(key in sorted.goods) {
+                sorted.goods[key] = sortedNames[i]
+                continue;
+        }
+        
+        // console.log(sorted)
+        
+        // if( sortedNames[key] === sorted.goods[key].title ){
+        //     sorted.goods[key] = model.goods[key];
+        // }        
+    }
+    console.log( sorted)
+    // model.goods = soretd;
+    // return model.goods;
+}
+
+function compareTitle(a, b) {
+    return a.title.localeCompare(b.title) ;
+}
+function  $getModel(){
+    return model.goods;
+}
 
 
 module.exports = {
-    load
+    load,
+    sortByName,
+    $getModel
 };
