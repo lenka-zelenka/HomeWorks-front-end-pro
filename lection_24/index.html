@@ -1,4 +1,5 @@
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/united.bootstrap.min.css">
@@ -7,13 +8,14 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <link rel="stylesheet" href="style.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 </head>
+
 <body>
     <!-- <div id="basket" class="basket card">
         <div class="card-content">
@@ -31,20 +33,32 @@
             <a id="clear-basket" class="waves-effect waves-light btn"> Remove all</a>
         </div>
     </div> -->
-    <nav>
-        <button id="sort-by-name" class="btn">Sort by name</button>
-        <button class="btn">Sort by price</button>
-    </nav>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Logo</a>
+                <ul class="left">
+                    <li>
+                        <a id="sort-by-name" class="btn default">Sort by name</a>
+                    </li>
+                    <li>
+                        <a>Sort by price</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <div class="container">
         <div id="goods-container" class="row">
 
         </div>
     </div>
-    
+
     <!-- add script tags here -->
 
     <script src="node_modules/systemjs/dist/system.js"></script>
-    
+
     <script>
         System.config({
             meta: {
@@ -53,13 +67,14 @@
         });
         System.import('js/app.js');
     </script>
-    
+
     <!--<script data-main="js/app" src="node_modules/requirejs/require.js"></script>-->
-    
+
     <!--<script src="js/player.js" type="text/javascript"></script>
     <script src="js/game.js" type="text/javascript"></script>
     <script src="js/scoreboard.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>-->
-    
+
 </body>
+
 </html>
