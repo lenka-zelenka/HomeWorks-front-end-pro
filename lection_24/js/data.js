@@ -33,9 +33,6 @@ function load(){
 }
 
 function sortByName(){
-    var sorted = {
-        goods: null
-    }
     var sortedNames = []
     
     for (key in model.goods) {
@@ -43,15 +40,16 @@ function sortByName(){
     }
     sortedNames.sort(compareTitle)
     for(var i=0; i <= sortedNames.length - 1; i++) {
-        model.goods['item-' + i] = sortedNames[i]      
+        model.goods['item-' + (i+1)] = sortedNames[i]      
     }
+    return model;
 }
 
 function compareTitle(a, b) {
     return a.title.localeCompare(b.title) ;
 }
 function  $getModel(){
-    return model.goods;
+    return model;
 }
 
 

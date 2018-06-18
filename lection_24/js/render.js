@@ -7,7 +7,8 @@ var model = {
 
 function renderGoods(data){
     model.goods = data.goods;
-    var goodsConteiner = document.getElementById('goods-container')
+    var goodsConteiner = document.getElementById('goods-container');
+    goodsConteiner.innerHTML = '' ;
     for (key in model.goods) {
         var col = document.createElement('div');
         col.className = "col s12 m4 l3";
@@ -50,6 +51,11 @@ function addToCart (event){
     InitGoodsCart(selectedGood)
 }
 
+
+
+
 module.exports = { 
     renderGoods: renderGoods
 };
+
+
