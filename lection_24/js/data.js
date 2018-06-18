@@ -37,30 +37,14 @@ function sortByName(){
         goods: null
     }
     var sortedNames = []
-    sorted.goods = model.goods
     
-    for (key in sorted.goods) {
-        sortedNames.push(sorted.goods[key]);
+    for (key in model.goods) {
+        sortedNames.push(model.goods[key]);
     }
     sortedNames.sort(compareTitle)
-    
-    
-    
-        for(var i=0; i<sortedNames.length -1; i++) {
-            for(key in sorted.goods) {
-                sorted.goods[key] = sortedNames[i]
-                continue;
-        }
-        
-        // console.log(sorted)
-        
-        // if( sortedNames[key] === sorted.goods[key].title ){
-        //     sorted.goods[key] = model.goods[key];
-        // }        
+    for(var i=0; i <= sortedNames.length - 1; i++) {
+        model.goods['item-' + i] = sortedNames[i]      
     }
-    console.log( sorted)
-    // model.goods = soretd;
-    // return model.goods;
 }
 
 function compareTitle(a, b) {
