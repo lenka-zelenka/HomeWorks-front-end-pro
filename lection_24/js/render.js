@@ -9,7 +9,7 @@ function renderGoods(data) {
     model.goods = data.goods;
     var goodsConteiner = document.getElementById('goods-container');
     goodsConteiner.innerHTML = '';
-    create the html for the goods items
+    // create the html for the goods items
     var goodscard = '';
     for (key in model.goods) {
         var goodscard = `
