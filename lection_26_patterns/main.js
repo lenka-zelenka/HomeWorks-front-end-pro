@@ -3,13 +3,19 @@ function Calc(a, b) {
     this.b = b;
 }
 
+Calc.prototype.multiply = function () {
+    console.log('multiply ' + this.a + ', ' + this.b + ': ' + this.a * this.b);
+}
+
+
+
 Calc.prototype.getValue = function () {
     return this.value;
 }
 
-Calc.prototype.convertToSupercalc = function (ingenier) {
+Calc.prototype.convertToSupercalc = function (decorator) {
     var F = function () { },
-        overrides = this.constructor[ingenier],
+        overrides = this.constructor.decorators[decorator],
         newObj;
 
     // Прототипом для декоратора устанавливается тот объект, который декорируется.
@@ -29,22 +35,21 @@ Calc.prototype.convertToSupercalc = function (ingenier) {
 }
 
 // Все декораторы будут храниться в свойстве конструктора.
-Calc.ingenier = {
-    pover: function () { 
-        console.log(this.a * this.b)
+Calc.decorators = {}
+
+Calc.decorators.ingenier = {
+    pover: function () {
+        console.log('pover ' + this.a + ','+ this.b +': '+ Math.pow(this.a, this.b))
     },
     factorial: function () { },
     sin: function () { },
     cos: function () { }
-};
-
+}
 
 var aaa = new Calc(2, 3)
 
- 
-
-
-
 aaa = aaa.convertToSupercalc('ingenier')
 
-aaa.pover(2,3)
+
+aaa.multiply()
+aaa.pover()
