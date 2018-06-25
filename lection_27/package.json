@@ -1,0 +1,23 @@
+{
+  "name": "homeworks-front-end-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenka-zelenka/HomeWorks-front-end-pro.git"
+  },
+  "dependencies": {
+    "systemjs": "^0.19.27",
+    "node-static": "0.7.10"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lenka-zelenka/HomeWorks-front-end-pro/issues"
+  },
+  "homepage": "https://github.com/lenka-zelenka/HomeWorks-front-end-pro#readme"
+}
