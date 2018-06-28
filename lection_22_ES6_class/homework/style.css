@@ -21,7 +21,7 @@ body {
     clear: both;
 }
 .field > div {
-    display: inline-block;
+    display: block;
     float: left;
     height: 24px;
     width: 24px;

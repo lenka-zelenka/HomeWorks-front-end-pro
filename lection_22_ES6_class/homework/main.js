@@ -36,23 +36,21 @@ class Field {
         var count = 0;
         var firedItems = [];
 
-        this.fire = function (target) {
+        this.fire = (target) => {
             if (target.classList.contains('sheep')) {
-                target.className = 'broken';
+                target.classList.add('broken');
             } else {
-                target.className = 'missed';
+                target.classList.add('missed');
                 count += 1;
             }
             this.backFire();
         }
 
-        this.backFire = function () {
+        this.backFire = () => {
             // функция устанавливает значение на поле юзера
             var targets = document.querySelectorAll('#field-user div');
-            var sheeps = Object.keys(targets).filter(function (key, index) {
-                if (targets[key].className == 'sheep') {
-                    return targets;
-                }
+            var sheeps = Object.keys(targets).filter((key) => {
+                return targets[key].className == 'sheep';
             });
 
             if (count == 1 && sheeps.length > 0) {
@@ -66,14 +64,18 @@ class Field {
             }
         }
     }
-    
+
     render() {
         var fieldBlock = document.getElementById('field-' + this.role)
         for (let i = 0; i < this.field.length; i++) {
             for (let j = 0; j < this.field[i].length; j++) {
                 var block = document.createElement('div');
-                this.field[i][j] === '+' ? block.classList.add('sheep') : '';
-                this.role === 'comp' ? block.addEventListener('click', (event) => this.fire(event.target)) : ''
+                if (this.field[i][j] === '+') {
+                    block.classList.add('sheep');
+                };
+                if (this.role === 'comp') {
+                    block.addEventListener('click', (event) => this.fire(event.target));
+                };
                 fieldBlock.appendChild(block)
             }
         }
