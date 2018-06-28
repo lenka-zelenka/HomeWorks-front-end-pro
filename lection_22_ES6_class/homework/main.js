@@ -33,52 +33,52 @@ class Field {
         this.field = field;
         this.role = role;
 
-        this.getStatus = function (target) {
-            let i = target.id[0],
-                j = target.id[2];
+        var count = 0;
+        var firedItems = [];
 
-            if (this.field[i][j] === '+') {
-                target.classList.add('broken');
+        this.fire = function (target) {
+            if (target.classList.contains('sheep')) {
+                target.className = 'broken';
             } else {
-                target.classList.add('missed');
-                this.compMove();
+                target.className = 'missed';
+                count += 1;
+            }
+            this.backFire();
+        }
+
+        this.backFire = function () {
+            // функция устанавливает значение на поле юзера
+            var targets = document.querySelectorAll('#field-user div');
+            var sheeps = Object.keys(targets).filter(function (key, index) {
+                if (targets[key].className == 'sheep') {
+                    return targets;
+                }
+            });
+
+            if (count == 1 && sheeps.length > 0) {
+                let firedItemIndex = Math.floor(Math.random() * targets.length);
+                this.fire(targets[firedItemIndex]);
+                count = 0;
+            }
+
+            if (sheeps.length === 0) {
+                alert('You LOST')
             }
         }
-        this.setStatus = function(){
-            // функция устанавливает значение на поле юзера
-        }
-        this.compMove = function () {
-            console.log('move');
-        }
-
     }
+    
     render() {
         var fieldBlock = document.getElementById('field-' + this.role)
-
         for (let i = 0; i < this.field.length; i++) {
             for (let j = 0; j < this.field[i].length; j++) {
                 var block = document.createElement('div');
-                block.id = i + '-' + j;
-                block.classList.add('square');
-                this.role === 'user' && this.field[i][j] === '+' ? block.classList.add('unbroken') : ''
-                this.role === 'comp' ? block.addEventListener('click', (event) => this.getStatus(event.target)) : ''
+                this.field[i][j] === '+' ? block.classList.add('sheep') : '';
+                this.role === 'comp' ? block.addEventListener('click', (event) => this.fire(event.target)) : ''
                 fieldBlock.appendChild(block)
             }
         }
     }
-
-
 }
-// class SeaBattle extends Field {
-//     constructor(field, role) {
-//         super();
-//         super.render();
-
-//         this.field = field;
-//         this.role = role;
-//     }
-//     render() { }
-// }
 
 const userField = [
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
@@ -87,7 +87,7 @@ const userField = [
     ['.', '.', '.', '.', '.', '+', '.', '.', '.', '.'],
     ['.', '.', '.', '.', '.', '.', '.', '+', '+', '+'],
     ['.', '.', '.', '.', '+', '.', '.', '.', '.', '.'],
-    ['.', '.', '.', '.', '+', '.', '+', '+', '.', '.'],
+    ['+', '.', '.', '.', '+', '.', '+', '+', '.', '.'],
     ['.', '.', '.', '.', '+', '.', '.', '.', '.', '.'],
     ['.', '+', '+', '.', '+', '.', '+', '.', '+', '.'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.']
