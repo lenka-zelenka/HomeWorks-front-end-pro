@@ -49,9 +49,7 @@ class Field {
         this.backFire = () => {
             // функция устанавливает значение на поле юзера
             var targets = document.querySelectorAll('#field-user div');
-            var sheeps = Object.keys(targets).filter((key) => {
-                return targets[key].className == 'sheep';
-            });
+            var sheeps = document.querySelectorAll('#field-user .sheep');
 
             if (count == 1 && sheeps.length > 0) {
                 let firedItemIndex = Math.floor(Math.random() * targets.length);
