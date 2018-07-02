@@ -1,5 +1,5 @@
 var repos = [];
-
+var forks = [];
 function doAjax(method, path) {
     var xhr = new XMLHttpRequest();
 
@@ -18,10 +18,18 @@ function doAjax(method, path) {
     })
 }
 function load() {
-    return doAjax('GET', 'https://api.github.com/orgs/hillel-front-end/repos')
-        
+    return doAjax('GET', 'https://api.github.com/orgs/hillel-front-end/repos');    
 }
 
 // function executeRepos() {
 
 // }
+
+function setModel(a, b){
+    repos = a.slice(); 
+    forks = b.slice();
+}
+
+function search () {
+    console.log('search!')
+}
