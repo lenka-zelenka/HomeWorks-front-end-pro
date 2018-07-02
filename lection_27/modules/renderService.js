@@ -1,18 +1,18 @@
 
-var data = []
+// var data = []
 function renderData(repos, forks) {
     
 
-    console.log(repos);
+    // console.log(repos);
     var repos_list = document.getElementById('repos-list');
     // for (var innerItem of forks) {
     //     if (forks.length) {
     //         data = forks.map(inneritem => inneritem.owner)
     //     }
     // }
-    console.log(data)
+    // console.log(data)
     repos.forEach(function(item, pos){
-        console.log(item.name)
+        // console.log(item.name)
         let items = `
             <li>
                 ${item.name}

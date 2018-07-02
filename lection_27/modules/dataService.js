@@ -30,6 +30,16 @@ function setModel(a, b){
     forks = b.slice();
 }
 
-function search () {
-    console.log('search!')
+function search (event) {
+    event.preventDefault();
+    var input = document.getElementById('search-input');
+    if(input.value.length >= 3){
+        for( key in repos) {
+            console.log(key.indexof(input.value))
+        }
+        // repos.forEach(function(item, pos){
+        //     item.name.indexof(input.value);
+        // })
+    };
+    console.log(repos)
 }
