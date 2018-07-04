@@ -1,5 +1,8 @@
-var repos = [];
-var forks = [];
+var model = {
+    repos: [],
+    forks: []
+};
+
 function doAjax(method, path) {
     var xhr = new XMLHttpRequest();
 
@@ -18,28 +21,40 @@ function doAjax(method, path) {
     })
 }
 function load() {
-    return doAjax('GET', 'https://api.github.com/orgs/hillel-front-end/repos');    
+    return doAjax('GET', 'https://api.github.com/orgs/hillel-front-end/repos');
 }
 
-// function executeRepos() {
-
-// }
-
-function setModel(a, b){
-    repos = a.slice(); 
-    forks = b.slice();
+function setModel(modele) {
+    model = modele;
 }
 
-function search (event) {
+function search(event) {
     event.preventDefault();
+    console.log(model.repos)
     var input = document.getElementById('search-input');
-    if(input.value.length >= 3){
-        for( key in repos) {
-            console.log(key.indexof(input.value))
-        }
-        // repos.forEach(function(item, pos){
-        //     item.name.indexof(input.value);
-        // })
+
+    let searchModel = {
+        repos: [],
+        forks: []
     };
-    console.log(repos)
+
+    if (input.value.length >= 3) {
+
+        for (let obj of model.repos) {
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    if (typeof (obj[key]) == "string") {
+                        if (obj[key].indexOf(input.value) >= 0) {
+                            searchModel.repos.push(obj);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    // console.log(searchModel)
+    return searchModel
+
 }

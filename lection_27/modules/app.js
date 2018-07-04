@@ -1,26 +1,25 @@
 var render = require('./renderService.js');
 var data = require('./dataService.js');
 
-var repos = [];
-var forks = [];
+var model = {
+    repos: [],
+    forks: []
+};
 
 data.load()
     .then(resp => {
-        repos = resp.slice();    
-        localStorage.repos =  resp.slice();   
+        model.repos = resp.slice();
+        localStorage.repos = resp.slice();
         return resp;
     })
     .then(response => response.map((item) => doAjax('GET', item.forks_url)))
     .then(list => Promise.all(list))
     .then(all => {
-        forks = all.slice();
+        model.forks = all.slice();
         localStorage.forks = all.slice();
-        render.renderData(repos, forks);
-        data.setModel(repos, forks);
+        render.renderData(model);
+        data.setModel(model);
     });
 
 var search_button = document.getElementById('search-btn')
-search_button.addEventListener('click', (event) => data.search(event) )
-// Promise.all(load).then(function(values){
-//     console.log('values')
-// })
+search_button.addEventListener('click', (event) => render.renderData(data.search(event)))
