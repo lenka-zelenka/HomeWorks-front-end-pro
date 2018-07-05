@@ -30,7 +30,6 @@ function setModel(modele) {
 
 function search(event) {
     event.preventDefault();
-    console.log(model.repos)
     var input = document.getElementById('search-input');
 
     let searchModel = {
@@ -39,22 +38,16 @@ function search(event) {
     };
 
     if (input.value.length >= 3) {
-
-        for (let obj of model.repos) {
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    if (typeof (obj[key]) == "string") {
-                        if (obj[key].indexOf(input.value) >= 0) {
-                            searchModel.repos.push(obj);
-                            break;
-                        }
-                    }
+        model.repos.some((element) => {
+            for (let key in element) {
+                if (typeof element[key] == 'string' && element[key].indexOf(input.value) >= 0) {
+                    
+                    searchModel.repos.push(element);
+                    break;
                 }
             }
-        }
+        });
     };
 
-    // console.log(searchModel)
     return searchModel
-
 }
